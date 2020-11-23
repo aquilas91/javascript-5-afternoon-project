@@ -23,14 +23,20 @@ function outer() {
 */
   
 // Code Here
-
+function outer() {
+  var name = 'Tyler';
+  return {
+     inner: function() {
+    return 'The original name was ' + name;
+  }
+  };
+}
 
 
 //Once you do that, invoke inner.
 
 //Code Here
-
-
+outer();
 
 ////////// PROBLEM 2 //////////
 
@@ -47,13 +53,20 @@ function callFriend(name) {
   Above you're given a callFriend function that returns the dial function.
   Store the result of invoking callFriend in a variable named callJake.
   
-  When callJake is invoked with '435-555-9248', it returns 'Calling Jake at 435-555-9248' 
+  When callJake is invoked with '435-555-9248', it returns 'Calling Jake at ' 
   (HINT: You will need to pass in arguments to both function invocations)
 */
 
 //Code Here
+function callFriend(name) {
+  function dial(number) {
+    return 'Calling ' + name + ' at ' + number
+  }
+  return dial;
+}
 
-
+const friend= callFriend('callJake')
+friend.dial('435-555-9248');
 
 ////////// PROBLEM 3 //////////
 
@@ -62,15 +75,21 @@ function callFriend(name) {
 */
 
 //Code Here
+ function makeCounter(){
+    let num=0
+    const count = ()=>{
+      return num +=1
+    }
+    return count;
+ }
 
 
-
-//Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+// Uncomment this once you make your function
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -86,11 +105,17 @@ function callFriend(name) {
 */
 
 function counterFactory(value) {
-  // Code here.
+  let x=0
+    function inc (){
+      return x +=1
+    }
+    function dec (){
+      x -=1
+    }
+    
+   return x;
 
-  return {
 
-  };
 }
 
 counter = counterFactory(10);
@@ -111,11 +136,12 @@ counter = counterFactory(10);
 
 function motivation( firstname, lastname ) {
   var welcomeText = "You're doing awesome, keep it up";
-
-  // code message function here.
-
+    function message(){
+      return `You're doing awesome, keep it up ${firstname} ${lastname}.{" "}`
+    }
+    
   //Uncommment this to return the value of your message function
-  //return message;
+  return message;
 }
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.

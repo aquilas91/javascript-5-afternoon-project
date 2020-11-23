@@ -30,6 +30,17 @@
 */
 
 //Code Here
+ class Employees{
+   constructor(first_name, last_name, email, age){
+     this.first_name=first_name;
+     this.last_name=last_name;
+     this.email=email;
+     this.age= age;
+  } 
+  makeWidget(){
+    retutn `${this.first_name} ${this.last_name} widget`
+  }
+ }
 
 
 ////////// PROBLEM 2 //////////
@@ -49,6 +60,28 @@
 
 //Code Here
 
+class Manager extends Employees{
+  constructor(first_name, last_name, email, age){
+    super(first_name, last_name, email, age);
+    this.reports=[];
+    this.hire='';
+    this.fire=''
+
+  }
+  reports(){
+    this.reports= this.reports
+    return this
+  }
+  hire(){
+    this.hire=this.reports.push(this.hire)
+    return this.reports
+  }
+  fire(){
+    this.fire=this.reports.pop(this.fire)
+    return this.reports
+
+  }
+}
 
 ////////// PROBLEM 3 //////////
 
@@ -72,7 +105,33 @@
 */
 
 //Code Here
-
+class ProgressiveManager extends Manager{
+  constructor(first_name,last_name,email,age,title,bonus){
+      super(first_name,last_name,email,age, );
+      this.title='Not a manager';
+      this.bonus=0;
+   }    
+  manager(){
+    super.reports();
+    super.fire();
+  if (this.reports.lenght===0){
+    return this.title
+  }else if(this.reports.lenght>=1 && this.reports.length<=3 ){
+    return this.title='Barely Manager'
+  }else if(this.reports.lenght>=4 && this.reports.length<=10 ){
+    return this.title='Mostly Manager'
+  }else if(this.reports.lenght>=11 && this.reports.length<=50 ){
+    return this.title='Manager'
+  }else if(this.reports.lenght>=51 && this.reports.length<=100 ){
+    return this.title='Manager Plus'
+  }else if(this.reports.lenght>=101 ){
+    return this.title='Bestest Manager'
+ 
+  }else if (this.fire){
+    return this.bonus += 100
+  }
+ }
+}
 
 
 ////////// PROBLEM 4 - Black Diamond //////////
@@ -101,3 +160,30 @@
 //Code Here
 
 
+ class Machine{
+constructor(){
+  this.widgets_made_count= 0;
+  this.wear_and_tear_count=0;
+  this.needs_reboot =false; 
+}
+
+makeWidgets(x){
+  this.widgets_made_count +=x;
+
+  if ( x=50) {
+  return  this.wear_and_tear_count+=1
+  } else if (x>50){
+    return this.wear_and_tear_count+=Math.floor(x/50)
+  }
+}
+  fixMachine(){
+this.needs_reboot =true
+  }
+  reboot(){
+    return function anonymous(){
+      this.wear_and_tear_count -=10;
+      this.needs_reboot=false
+    }
+  }
+
+ }
